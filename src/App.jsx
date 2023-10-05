@@ -11,7 +11,8 @@ import Cart from './pages/cart/Cart';
 import Dashboard from './pages/admin/dashboard/Dashboard';
 import NoPage from './pages/nopage/NoPage';
 import MyState from './context/data/myState';
-
+import Login from './pages/registrations/Login';
+import Signup from './pages/registrations/Signup';
 function App() {
   return (
     <MyState>
@@ -20,6 +21,8 @@ function App() {
           <Route path="/" element={<Home />} />
           <Route path="/order" element={<Order />} />
           <Route path="/cart" element={<Cart />} />
+          <Route path="/login" element={<Login />} />
+          <Route path="/signup" element={<Signup />} />
           <Route path="/dashboard" element={<Dashboard />} />
           <Route path="/*" element={<NoPage />} />n
         </Routes>

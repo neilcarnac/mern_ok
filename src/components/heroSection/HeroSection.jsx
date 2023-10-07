@@ -3,7 +3,7 @@ import React from 'react'
 function HeroSection() {
   return (
     <div>
-        <img className='w-100% h-auto' src="../../../public/flexs.svg" alt="no" />
+        <img className='w-100% h-auto' src="../../../flexs.svg" alt="no" />
     </div>
   )
 }

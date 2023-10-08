@@ -8,9 +8,15 @@ import { RxCross2 } from 'react-icons/rx'
 
 export default function Navbar() {
   const [open, setOpen] = useState(false)
-
+  const user = JSON.parse(localStorage.getItem('user'));
+  console.log(user.user.email)
   const context = useContext(myContext)
   const { toggleMode, mode } = context
+
+  const logout = () => {
+    localStorage.clear('user');
+    window.location.href = './login';
+  }
 
   return (
     <div className="bg-white sticky top-0 z-50  "  >
@@ -59,12 +65,13 @@ export default function Navbar() {
                     <Link to={'/order'} style={{ color: mode === 'dark' ? 'white' : '', }} className="-m-2 block p-2 font-medium text-gray-900">
                       Order
                     </Link>
+                    {user.user.email === 'ncarnac@gmail.com' ? <Link to={'/dashboard'} className="-m-2 block p-2 font-medium text-gray-900" style={{ color: mode === 'dark' ? 'white' : '', }}>
+                      admin
+                    </Link> : ''}
                   </div>
 
                   <div className="flow-root">
-                    <Link to={'/dashboard'} className="-m-2 block p-2 font-medium text-gray-900" style={{ color: mode === 'dark' ? 'white' : '', }}>
-                      admin
-                    </Link>
+
                   </div>
 
                   <div className="flow-root">

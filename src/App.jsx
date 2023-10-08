@@ -3,6 +3,7 @@ import {
   BrowserRouter as Router,
   Route,
   Routes,
+  Navigate,
 } from "react-router-dom";
 import Home from './pages/home/Home';
 import Order from './pages/order/Order';
@@ -27,15 +28,29 @@ function App() {
       <Router>
         <Routes>
           <Route path="/" element={<Home />} />
-          <Route path="/order" element={<Order />} />
+          <Route path="/order" element={
+            <ProtectedRoute>
+              <Order />
+            </ProtectedRoute>
+          } />
           <Route path="/cart" element={<Cart />} />
           <Route path="/login" element={<Login />} />
           <Route path="/signup" element={<Signup />} />
-          <Route path="/addproduct" element={<AddProduct />} />
-          <Route path="/updateproduct" element={<UpdateProduct />} />
-
+          <Route path="/addproduct" element={
+            <ProtectedRouteForAdmin>
+              <AddProduct />
+            </ProtectedRouteForAdmin>
+          } />
+          <Route path="/updateproduct" element={
+            <ProtectedRouteForAdmin>
+              <UpdateProduct />
+            </ProtectedRouteForAdmin>} />
           <Route path="/Productinfo/:id" element={<ProductInfo />} />
-          <Route path="/dashboard" element={<Dashboard />} />
+          <Route path="/dashboard" element={
+            <ProtectedRouteForAdmin>
+              <Dashboard />
+            </ProtectedRouteForAdmin>
+          } />
           <Route path="/*" element={<NoPage />} />n
         </Routes>
         <ToastContainer />
@@ -45,3 +60,26 @@ function App() {
 }
 
 export default App
+
+//user
+
+const ProtectedRoute = ({ children }) => {
+  const user = localStorage.getItem('user');
+  if (user) {
+    return children;
+  }
+  else {
+    return <Navigate to={'/login'} />
+  }
+}
+
+//admin
+
+const ProtectedRouteForAdmin = ({ children }) => {
+  const admin = JSON.parse(localStorage('user'));
+  if (admin.user.email === 'ncarnac@gmail.com') {
+    return children;
+  } else {
+    return <Navigate to={'/login'} />
+  }
+}

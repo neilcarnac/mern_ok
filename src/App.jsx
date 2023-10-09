@@ -29,57 +29,52 @@ function App() {
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/order" element={
-            <ProtectedRoute>
+            <ProtectedRoutes>
               <Order />
-            </ProtectedRoute>
+            </ProtectedRoutes>
           } />
           <Route path="/cart" element={<Cart />} />
+          <Route path="/dashboard" element={
+            <ProtectedRoutesForAdmin><Dashboard /></ProtectedRoutesForAdmin>
+          } />
+          <Route path="/productinfo" element={<ProductInfo />} />
           <Route path="/login" element={<Login />} />
           <Route path="/signup" element={<Signup />} />
           <Route path="/addproduct" element={
-            <ProtectedRouteForAdmin>
-              <AddProduct />
-            </ProtectedRouteForAdmin>
-          } />
+            <ProtectedRoutesForAdmin><AddProduct /></ProtectedRoutesForAdmin>} />
           <Route path="/updateproduct" element={
-            <ProtectedRouteForAdmin>
-              <UpdateProduct />
-            </ProtectedRouteForAdmin>} />
-          <Route path="/Productinfo/:id" element={<ProductInfo />} />
-          <Route path="/dashboard" element={
-            <ProtectedRouteForAdmin>
-              <Dashboard />
-            </ProtectedRouteForAdmin>
-          } />
-          <Route path="/*" element={<NoPage />} />n
+            <ProtectedRoutesForAdmin><UpdateProduct /></ProtectedRoutesForAdmin>} />
+          <Route path="/*" element={<NoPage />} />
         </Routes>
-        <ToastContainer />
+        <ToastContainer/>
       </Router>
     </MyState>
+
   )
 }
 
 export default App
 
-//user
-
-const ProtectedRoute = ({ children }) => {
-  const user = localStorage.getItem('user');
-  if (user) {
-    return children;
+export const ProtectedRoutes = ({ children }) => {
+  if (localStorage.getItem('user')) {
+    return children
   }
   else {
-    return <Navigate to={'/login'} />
+    return <Navigate to='/login' />
   }
 }
 
-//admin
-
-const ProtectedRouteForAdmin = ({ children }) => {
-  const admin = JSON.parse(localStorage('user'));
+export const ProtectedRoutesForAdmin = ({children}) => {
+  const admin = JSON.parse(localStorage.getItem('user'))
+  console.log(admin.user.email)
   if (admin.user.email === 'ncarnac@gmail.com') {
-    return children;
-  } else {
-    return <Navigate to={'/login'} />
+    return children
+  }
+  else {
+    return <Navigate to='/login' />
   }
 }
+
+
+
+

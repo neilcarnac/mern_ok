@@ -90,7 +90,7 @@ function Cart() {
       handler: function (response) {
         // console.log(response)
         toast.success('Payment Successful')
-        const paymentId = response.razorpay_payment_id
+        const paymentId = response.razorpay_payment_id;
         const ordersCollection = collection(fireDB, "orders")
         // store in firebase 
         const orderInfo = {
@@ -110,7 +110,9 @@ function Cart() {
         }
 
         try {
-          const result = addDoc(ordersCollection, orderInfo);
+          const result = async ()=> addDoc(ordersCollection, orderInfo);
+          console.log(result)
+          console.log('works')
         } catch (error) {
           console.error(error);
         }

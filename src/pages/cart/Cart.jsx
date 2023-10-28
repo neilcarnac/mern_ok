@@ -5,7 +5,7 @@ import Modal from '../../components/modal/Modal';
 import { useDispatch, useSelector } from 'react-redux';
 import { deleteFromCart } from '../../redux/cartSlice';
 import { toast } from 'react-toastify';
-import { getFirestore, collection, addDoc } from 'firebase/firestore';
+import { addDoc, collection } from 'firebase/firestore';
 import { fireDB } from '../../firebase/firebaseConfig';
 
 
@@ -91,6 +91,7 @@ function Cart() {
         // console.log(response)
         toast.success('Payment Successful')
         const paymentId = response.razorpay_payment_id
+        const ordersCollection = collection(fireDB, "orders")
         // store in firebase 
         const orderInfo = {
           cartItems,
@@ -109,14 +110,12 @@ function Cart() {
         }
 
         try {
-          const orderRef = collection(fireDB, 'orders');
-          addDoc(orderRef, orderInfo);
-          
+          const result = addDoc(ordersCollection, orderInfo);
         } catch (error) {
-          console.log(error) 
+          console.error(error);
         }
       },
-
+      
       theme: {
         color: "#3399cc"
       }

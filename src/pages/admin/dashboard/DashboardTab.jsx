@@ -26,19 +26,19 @@ function DashboardTab() {
                     <Tabs defaultIndex={0} className=" " >
                         <TabList className="md:flex md:space-x-8 bg-  grid grid-cols-2 text-center gap-4   md:justify-center mb-10 ">
                             <Tab>
-                                <button type="button" className="font-medium border-b-2 border-purple-500 text-purple-500 rounded-lg text-xl  px-5 py-1.5 text-center bg-[#605d5d12] ">
+                                <button type="button" className="font-medium border-b-4  text-purple-500 rounded-lg text-xl  px-5 py-1.5 text-center bg-[#605d5d12] ">
                                     <div className="flex gap-2 items-center">
                                         <MdOutlineProductionQuantityLimits />Products</div> </button>
                             </Tab>
                             <Tab>
-                                <button type="button" className="font-medium border-b-2 border-pink-500 bg-[#605d5d12] text-pink-500  rounded-lg text-xl    px-5 py-1.5 text-center ">
+                                <button type="button" className="font-medium border-b-4 bg-[#605d5d12] text-pink-500  rounded-lg text-xl    px-5 py-1.5 text-center ">
                                     <div className="flex gap-2 items-center">
                                         <AiFillShopping /> Order
                                     </div>
                                 </button>
                             </Tab>
                             <Tab>
-                                <button type="button" className="font-medium border-b-2 border-green-500 bg-[#605d5d12] text-green-500 rounded-lg text-xl    px-5 py-1.5 text-center ">
+                                <button type="button" className="font-medium border-b-4  bg-[#605d5d12] text-green-500 rounded-lg text-xl    px-5 py-1.5 text-center ">
                                     <div className="flex gap-2 items-center">
                                         <FaUser /> Users
                                     </div>

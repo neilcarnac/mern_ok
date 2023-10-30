@@ -3,7 +3,7 @@ import myContext from '../../context/data/myContext';
 import Layout from '../../components/layout/Layout';
 import Modal from '../../components/modal/Modal';
 import { useDispatch, useSelector } from 'react-redux';
-import { deleteFromCart } from '../../redux/cartSlice';
+import { deleteFromCart, clearCart } from '../../redux/cartSlice';
 import { toast } from 'react-toastify';
 import { fireDB } from '../../firebase/firebaseConfig';
 import { addDoc, collection } from 'firebase/firestore';
@@ -118,6 +118,9 @@ function Cart() {
           const result = await addDoc(collection(fireDB, "orders"), orderInfo)
           console.log(result);
           console.log('works')
+          dispatch(clearCart());
+          toast.success('Order Placed Successfully')
+
         } catch (error) {
           
           console.log(error)

@@ -20,6 +20,7 @@ import { ToastContainer } from 'react-toastify';
 import { toast } from 'react-toastify';
 
 import 'react-toastify/dist/ReactToastify.css';
+import ProductCard from './components/productCard/ProductCard';
 
 
 function App() {
@@ -37,7 +38,8 @@ function App() {
           <Route path="/dashboard" element={
             <ProtectedRoutesForAdmin><Dashboard /></ProtectedRoutesForAdmin>
           } />
-          <Route path="/productinfo" element={<ProductInfo />} />
+          <Route path="/productinfo/:id" element={<ProductInfo />} />
+          <Route path="/product-card" element= {<ProductCard />}/>
           <Route path="/login" element={<Login />} />
           <Route path="/signup" element={<Signup />} />
           <Route path="/addproduct" element={

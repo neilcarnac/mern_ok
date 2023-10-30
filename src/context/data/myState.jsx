@@ -49,6 +49,7 @@ function MyState(props) {
       await addDoc(productRef, products)
       toast.success("Product Add successfully")
       getProductData()
+      window.location.href = '/dashboard'
       closeModal()
       setLoading(false)
     } catch (error) {
@@ -105,18 +106,24 @@ function MyState(props) {
   }
 
   const deleteProduct = async (item) => {
-
-    try {
-      setLoading(true)
-      await deleteDoc(doc(fireDB, "products", item.id));
-      toast.success('Product Deleted successfully')
-      setLoading(false)
-      getProductData()
-    } catch (error) {
-      // toast.success('Product Deleted Falied')
-      setLoading(false)
+    // Ask for confirmation before deleting the product
+    const confirmDelete = window.confirm('Are you sure you want to delete this product?');
+  
+    if (confirmDelete) {
+      try {
+        setLoading(true);
+        await deleteDoc(doc(fireDB, "products", item.id));
+        toast.success('Product Deleted successfully');
+        setLoading(false);
+        getProductData();
+      } catch (error) {
+        // Handle the error, e.g., display an error message.
+        toast.error('Product Deletion Failed');
+        setLoading(false);
+      }
     }
   }
+  
 
 
   const [users, setUsers] = useState([]);  

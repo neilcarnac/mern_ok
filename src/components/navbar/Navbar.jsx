@@ -63,7 +63,7 @@ export default function Navbar() {
                 </div>
                 <div className="space-y-6 border-t border-gray-200 px-4 py-6">
 
-                  <Link to={'/allproducts'} className="text-sm font-medium text-gray-900 " style={{ color: mode === 'dark' ? 'white' : '', }}>
+                  <Link to={'/product-card'} className="text-sm font-medium text-gray-900 " style={{ color: mode === 'dark' ? 'white' : '', }}>
                     All Products
                   </Link>
                   <div className="flow-root">
@@ -111,7 +111,7 @@ export default function Navbar() {
 
       {/* desktop  */}
       <header className="relative bg-white">
-        <p className="flex h-10 items-center justify-center bg-[#0E10FD] px-4 text-sm font-medium text-white sm:px-6 lg:px-8" style={{ backgroundColor: mode === 'dark' ? 'rgb(62 64 66)' : '', color: mode === 'dark' ? 'white' : '', }}>
+        <p className="flex h-10 items-center justify-center bg-[#0E10FD] px-4 text-sm font-medium text-white sm:px-6 lg:px-8" style={{ backgroundColor: mode === 'dark' ? 'black' : '', color: mode === 'dark' ? 'white' : '', }}>
           Get free delivery on orders over ₹300
         </p>
 
@@ -134,7 +134,7 @@ export default function Navbar() {
               <div className="ml-4 flex lg:ml-0">
                 <Link to={'/'} className='flex'>
                   <div className="flex ">
-                    <h1 className=' text-2xl font-bold text-black  px-2 py-1 rounded' style={{ color: mode === 'dark' ? 'white' : '', }}>E-Bharat</h1>
+                    <h1 className=' text-xl font-bold text-black  px-2 py-1 rounded' style={{ color: mode === 'dark' ? 'white' : '', }}><img src='drnk_logo.png' className='h-9' /></h1>
                   </div>
                 </Link>
               </div>
@@ -142,9 +142,9 @@ export default function Navbar() {
               <div className="ml-auto flex items-center">
                 <div className="hidden lg:flex lg:flex-1 lg:items-center lg:justify-end lg:space-x-6">
 
-                  <Link to={'/allproducts'} className="text-sm font-medium text-gray-700 " style={{ color: mode === 'dark' ? 'white' : '', }}>
+                  {/* <Link to={'/allproducts'} className="text-sm font-medium text-gray-700 " style={{ color: mode === 'dark' ? 'white' : '', }}>
                     All Products
-                  </Link>
+                  </Link> */}
                  {user ? <Link to={'/order'} className="text-sm font-medium text-gray-700 " style={{ color: mode === 'dark' ? 'white' : '', }}>
                     Order
                   </Link> : ''}

@@ -8,6 +8,7 @@ import Testimonial from '../../components/testimonial/Testimonial';
 import Track from '../../components/track/Track';
 import { useDispatch, useSelector } from 'react-redux';
 import { addToCart, deleteFromCart } from '../../redux/cartSlice';
+
  
 function Home() {
 
@@ -33,8 +34,8 @@ function Home() {
         <HeroSection />
         <Filter />
         <ProductCard />
-        <Track />
-        <Testimonial />
+        {/* <Track /> */}
+        {/* <Testimonial /> */}
       </Layout>
     </>
   ) 

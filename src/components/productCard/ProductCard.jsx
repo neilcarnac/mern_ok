@@ -30,8 +30,9 @@ function ProductCard() {
                 </div>
 
                 <div className="flex flex-wrap -m-4">
-                   {product.map((item, index) => {
-                    const {id, title, description, price, imageUrl} = item;
+                   {product.filter((obj) => obj.title.toLowerCase().includes(searchkey)).filter((obj) => obj.category.toLowerCase().includes(filterType)).filter((obj) => obj.price.toLowerCase().includes(filterPrice)).map((item, index) => {
+                    const { title, price, description, imageUrl } = item;
+
                     return(
                         <div key={index} className="p-4 md:w-1/4  drop-shadow-lg " >
                         <div className="h-full border-2 hover:shadow-gray-100 hover:shadow-2xl transition-shadow duration-1000 ease-in-out    border-gray-200 border-opacity-60 rounded-2xl overflow-hidden" style={{ backgroundColor: mode === 'dark' ? 'rgb(46 49 55)' : '', color: mode === 'dark' ? 'white' : '', }} >

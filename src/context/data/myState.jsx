@@ -55,7 +55,7 @@ function MyState(props) {
       console.log(error)
       setLoading(false)
     }
-    setProducts("")
+    setProducts("");
   }
 
   const [product, setProduct] = useState([]);
@@ -119,7 +119,31 @@ function MyState(props) {
   }
 
 
-  const [order, setOrder] = useState([]);
+  const [users, setUsers] = useState([]);  
+  const getUserData = async () => {
+    setLoading(true);
+  
+    try {
+      const result = await getDocs(collection(fireDB, 'users'));
+      const usersArray = [];
+  
+      result.forEach((doc) => {
+        usersArray.push(doc.data());
+      });
+  
+      setUsers(usersArray);
+      setLoading(false); // Set loading to false after the entire try block
+      console.log(usersArray);
+    } catch (error) {
+      console.log(error);
+      setLoading(false); // Handle errors and set loading to false
+    }
+  }
+  
+
+    
+
+  const [orders, setOrders] = useState([]);
 
   const getOrderData = async () => {
     setLoading(true)
@@ -130,7 +154,7 @@ function MyState(props) {
         ordersArray.push(doc.data());
         setLoading(false)
       });
-      setOrder(ordersArray);
+      setOrders(ordersArray);
       console.log(ordersArray)
       setLoading(false);
     } catch (error) {
@@ -142,16 +166,22 @@ function MyState(props) {
 
   useEffect(() => {
     getProductData();
-    getOrderData()
+    getOrderData();
+    getUserData();
 
   }, []);
+
+  const [searchkey, setSearchkey] = useState('')
+  const [filterType, setFilterType] = useState('')
+  const [filterPrice, setFilterPrice] = useState('')
+
 
 
   return (
     <MyContext.Provider value={{
       mode, toggleMode, loading, setLoading,
       products, setProducts, addProduct, product,
-      updateProduct,edithandle,deleteProduct,order
+      updateProduct,edithandle,deleteProduct,orders, users, getUserData, searchkey, setSearchkey, filterType, setFilterType, filterPrice, setFilterPrice
     }}>
       {props.children}
     </MyContext.Provider>

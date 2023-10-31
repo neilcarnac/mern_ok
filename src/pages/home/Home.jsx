@@ -8,6 +8,12 @@ import Testimonial from '../../components/testimonial/Testimonial';
 import Track from '../../components/track/Track';
 import { useDispatch, useSelector } from 'react-redux';
 import { addToCart, deleteFromCart } from '../../redux/cartSlice';
+import Weather from '../../components/weather/Weather';
+import ReactDOM from 'react-dom';
+
+
+ReactDOM.render(<Weather />, document.getElementById('root'));
+
 
  
 function Home() {
@@ -32,6 +38,7 @@ function Home() {
           <button className= 'bg-gray-300 p-5' onClick={() => deleteCart()}>Delete</button>
         </div> */}
         <HeroSection />
+        <Weather />
         <Filter />
         <ProductCard />
         {/* <Track /> */}

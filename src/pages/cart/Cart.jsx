@@ -33,9 +33,14 @@ function Cart() {
 
   // add to cart
   const deleteCart = (item) => {
-    dispatch(deleteFromCart(item))
-    toast.success('delete g cart');
+    const shouldDelete = window.confirm("Are you sure you want to delete this item from the cart?");
+  
+    if (shouldDelete) {
+      dispatch(deleteFromCart(item));
+      toast.success('Item deleted from the cart');
+    }
   }
+  
 
   useEffect(() => {
     localStorage.setItem('cart', JSON.stringify(cartItems));
